@@ -9,6 +9,7 @@ int main(int argc, char *argv[])
     qRegisterMetaType<size_t>("size_t");
     qRegisterMetaType<rd_address>("address_t");
     QApplication::setStyle(QStyleFactory::create("Fusion"));
+    QCoreApplication::setAttribute(Qt::AA_ShareOpenGLContexts);
 
     QApplication a(argc, argv);
     a.setApplicationName("redasm");
