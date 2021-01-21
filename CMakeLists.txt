@@ -2,6 +2,15 @@ cmake_minimum_required(VERSION 3.12)
 
 project(REDasm)
 
+option(SYSTEM_INSTALL "Building for installing globally" FALSE)
+if(SYSTEM_INSTALL)
+    include(GNUInstallDirs)
+    set(DATABASE_FOLDER_PATH ${CMAKE_INSTALL_FULL_DATADIR}/redasm CACHE STRING "Path for database file")
+    add_definitions(-DDATABASE_FOLDER_PATH=\"${DATABASE_FOLDER_PATH}\")
+    set(PLUGIN_FOLDER_PATH ${CMAKE_INSTALL_FULL_LIBDIR}/redasm CACHE STRING "Path to plugins")
+    add_definitions(-DPLUGIN_FOLDER_PATH=\"${PLUGIN_FOLDER_PATH}\")
+endif()
+
 set(QT_VERSION_REQ "5.11")
 set(CMAKE_AUTOMOC ON)
 set(CMAKE_AUTOUIC ON)

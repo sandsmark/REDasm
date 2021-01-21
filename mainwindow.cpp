@@ -233,6 +233,14 @@ void MainWindow::initializeConfig()
         QMetaObject::invokeMethod(lblprogress, "setText", Qt::QueuedConnection, Q_ARG(QString, QString("%1 state(s) pending").arg(pending)));
     }, m_lblprogress);
 
+#ifdef DATABASE_FOLDER_PATH
+    RDConfig_AddDatabasePath(DATABASE_FOLDER_PATH);
+#endif
+
+#ifdef PLUGIN_FOLDER_PATH
+    RDConfig_AddPluginPath(PLUGIN_FOLDER_PATH);
+#endif
+
     RDConfig_AddDatabasePath(qUtf8Printable(QDir(RDConfig_GetRuntimePath()).absoluteFilePath(DATABASE_FOLDER_NAME)));
     RDConfig_AddPluginPath(qUtf8Printable(QDir(RDConfig_GetRuntimePath()).absoluteFilePath(PLUGINS_FOLDER_NAME)));
 
